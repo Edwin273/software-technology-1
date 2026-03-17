@@ -1,16 +1,13 @@
 import cv2
 
-image = cv2.imread('image.png')
-image_copy = image.copy()
+img1 = cv2.imread('image.png')
+img2 = cv2.imread('image2.png')
 
-# Draw something (reuse what you did before)
-cv2.circle(image_copy, (100, 100), 50, (0, 0, 255), 3)
+img2_resized = cv2.resize(img2, (img1.shape[1], img1.shape[0]))
 
-# Save image
-cv2.imwrite('output.png', image_copy)
+blended = cv2.addWeighted(img1, 0.6, img2_resized, 0.4, 0)
 
-# Display (optional but recommended)
-cv2.imshow('Saved Image', image_copy)
+cv2.imshow('Blended Image', blended)
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
